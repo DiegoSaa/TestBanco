@@ -17,29 +17,29 @@ To get started with this project, clone the repository and install the dependenc
 First, clone the repository:
 
 ```bash
-git clone https://github.com/DiegoSaa/bancoPichincha
+git clone https://github.com/DiegoSaa/TestBanco
 ```
 
 Navigate into the project directory:
 
 ```bash
-cd pruebabancopichincha
+cd TestBanco
 ```
 
 To start the application, you can use the following command:
 
 ```bash
-npm start
+yarn start
 ```
 
 To run the test, you can use the following command:
 
 ```bash
-npm run test
+yarn test
 ```
 
 ```bash
-npm run test:coverage
+yarn test:coverage
 ```
 
 This command runs the tests defined in the project and generates a coverage report.
