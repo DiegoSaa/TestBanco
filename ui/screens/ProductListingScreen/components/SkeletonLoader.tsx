@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { View, StyleSheet, Animated } from "react-native";
+import { ELEMENTS_SKELETON } from "constants/config";
 
 const SkeletonLoader = () => {
     const animation = useRef(new Animated.Value(0)).current;
@@ -22,10 +23,11 @@ const SkeletonLoader = () => {
     }, [animation]);
 
     return (
-        <View style={styles.loaderContainer}>
-            {[...Array(5)].map((_, index) => (
+        <View style={styles.loaderContainer} testID="loaderContainer">
+            {[...Array(ELEMENTS_SKELETON)].map((_, index) => (
                 <Animated.View
                     key={index}
+                    testID={`skeletonItem-${index}`}
                     style={[styles.skeletonItem, { opacity: animation }]}
                 >
                     <View style={styles.skeletonText} />

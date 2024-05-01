@@ -28,10 +28,12 @@ const DatePickerInput = ({ name, value, onChange, errors, touched }) => {
                 editable={false}
                 onTouchStart={() => setShow(true)}
                 accessibilityRole='button'
+                testID="textInput"
             />
             {touched && errors ? <Text style={styles.error}>{errors}</Text> : null}
 
             <Modal
+                testID="datePickerModal"
                 transparent={true}
                 visible={show}
                 animationType='slide'
@@ -56,7 +58,7 @@ const DatePickerInput = ({ name, value, onChange, errors, touched }) => {
                             onChange={handleDateChange}
                             minimumDate={new Date()}
                         />
-                        <Button title='Done' onPress={confirmDate} />
+                        <Button testID="doneButton" title='Done' onPress={confirmDate} />
                     </View>
                 </View>
             </Modal>

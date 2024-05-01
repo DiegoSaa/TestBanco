@@ -16,10 +16,21 @@ const ProductListingScreen: React.FC<
     const [searchQuery, setSearchQuery] = useState("");
     const { data: products, isLoading, error } = useFinancialProducts();
 
-    const filteredProducts = products?.filter((item) =>
-        item.name?.toLowerCase()?.includes(searchQuery?.toLowerCase()) ||
-        item.id?.toLowerCase()?.includes(searchQuery?.toLowerCase())
+    const filteredProducts = React.useMemo(() => {
+        return products?.filter(item =>
+            item.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.id?.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }, [products, searchQuery]);
+
+    const memoizedRenderItem = React.useCallback(
+        ({ item }) => renderItem({ item, navigation }),
+        [navigation]
     );
+
+    const ListHeaderComponent = React.useMemo(() => (
+        <View style={{ borderBottomWidth: 1, borderColor: COLORS.LIGTH_GREY_PICHINCHA }} />
+    ), []);
 
     const handleSearch = (query: string) => {
         setSearchQuery(query);
@@ -43,17 +54,13 @@ const ProductListingScreen: React.FC<
             ) : (
                 <FlatList
                     data={filteredProducts}
-                    renderItem={({ item }) => renderItem({ item, navigation })}
+                    renderItem={memoizedRenderItem}
                     keyExtractor={(item) => item.id}
-                    ListHeaderComponent={() => (
-                        <View
-                            style={{
-                                borderBottomWidth: 1,
-                                borderColor: COLORS.LIGTH_GREY_PICHINCHA,
-                            }}
-                        />
-                    )}
-                    ListEmptyComponent={<ProductEmptyResult text={searchQuery ? `No results found for ${searchQuery}` : "No hay productos agregagos"} />}
+                    ListHeaderComponent={ListHeaderComponent}
+                    ListEmptyComponent={<ProductEmptyResult text="No hay productos agregagos" />}
+                    initialNumToRender={10}
+                    maxToRenderPerBatch={5}
+                    windowSize={5}
                 />
             )}
             <View style={styles.addButton}>

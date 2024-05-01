@@ -1,0 +1,3 @@
+const ELEMENTS_SKELETON = 5;
+
+export { ELEMENTS_SKELETON };

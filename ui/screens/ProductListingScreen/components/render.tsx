@@ -12,6 +12,7 @@ type RenderItemProps = {
 
 export const renderItem = ({ item, navigation }: RenderItemProps) => (
     <Pressable
+        testID="pressableItem"
         style={({ pressed }) => [
             styles.itemContainer,
             { backgroundColor: pressed ? "#dddddd" : "transparent" },
@@ -27,6 +28,7 @@ export const renderItem = ({ item, navigation }: RenderItemProps) => (
             <Text style={styles.itemTextId}>{`ID: ${item.id}`}</Text>
         </View>
         <Image
+            testID="rightArrowIcon"
             source={require("../../../assets/rightArrow.png")}
             style={styles.rigthIcon}
         />
