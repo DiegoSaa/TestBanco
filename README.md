@@ -29,6 +29,12 @@ cd TestBanco
 To start the application, you can use the following command:
 
 ```bash
+yarn
+```
+
+And
+
+```bash
 yarn start
 ```
 
